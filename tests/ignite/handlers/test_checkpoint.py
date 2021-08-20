@@ -1252,10 +1252,18 @@ def test_distrib_hvd(gloo_hvd_executor):
     nproc = 4 if not torch.cuda.is_available() else torch.cuda.device_count()
     dirname = get_rank_zero_dirname()
 
-    gloo_hvd_executor(_test_save_model_optimizer_lr_scheduler_with_state_dict,
-                      (device, os.path.join(dirname, "1"),), np=nproc, do_init=True)
-    gloo_hvd_executor(_test_save_model_optimizer_lr_scheduler_with_state_dict,
-                      ("cpu", os.path.join(dirname, "2"),True), np=nproc, do_init=True)
+    gloo_hvd_executor(
+        _test_save_model_optimizer_lr_scheduler_with_state_dict,
+        (device, os.path.join(dirname, "1"),),
+        np=nproc,
+        do_init=True,
+    )
+    gloo_hvd_executor(
+        _test_save_model_optimizer_lr_scheduler_with_state_dict,
+        ("cpu", os.path.join(dirname, "2"), True),
+        np=nproc,
+        do_init=True,
+    )
 
 
 def _test_tpu_saves_to_cpu(device, dirname):
