@@ -1,11 +1,12 @@
 # coding: utf-8
 import contextlib
 import logging
-from typing import Any, Callable, Dict, List, Mapping, Optional, Union
 import os
-from ignite.engine import Engine, EventEnum, Events
+from typing import Any, Callable, Dict, List, Mapping, Optional, Union
 
 import torch
+
+from ignite.engine import Engine, EventEnum, Events
 
 
 class PyTorchProfiler:
